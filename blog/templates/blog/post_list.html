@@ -1,9 +1,16 @@
 <!DOCTYPEhtml> 
 <html> 
-	<head>
-		<title> Tom Hough's Blog </title>
-	</head>
-	<body>
-		<p> Test Paragraph! </p>
-	</body>
+	<div>
+	    <h1><a href="/">Tom Hough's Blog</a></h1>
+	</div>
+
+	{% for post in posts %}
+	    <div>
+	        <h2>
+	        	<a href="">{{ post.title }}</a>
+	        	(published: {{ post.published_date }})
+	        </h2>
+	        <p>{{ post.text|linebreaksbr }}</p>
+	    </div>
+	{% endfor %}
 </html>

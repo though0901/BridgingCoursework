@@ -24,23 +24,23 @@
                 </div>
 			    <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}" style="color: #e0301e">Log out</a>)</small></p>
 			{% else %}
-				<a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+				<a id="login_button" href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
 			{% endif %}
 
         <table>
             <tr>
                 <td id="blog_td">
                     {% if not 'cv' in request.build_absolute_uri %}
-                        <h1><a href="/" style="color: #e0301e">Tom Hough's Blog</a></h1>
+                        <h1><a id="blog_redirect" href="/" style="color: #e0301e">Tom Hough's Blog</a></h1>
                     {% else %}
-                        <h1><a href="/">Tom Hough's Blog</a></h1>
+                        <h1><a id="blog_redirect" href="/">Tom Hough's Blog</a></h1>
                     {% endif %}
                 </td>
                 <td id="cv_td">
                     {% if 'cv' in request.build_absolute_uri %}
-                        <h1><a href="/cv" style="color: #e0301e">Tom Hough's CV</a></h1>
+                        <h1><a id="cv_redirect" href="/cv" style="color: #e0301e">Tom Hough's CV</a></h1>
                     {% else %}
-                        <h1><a href="/cv">Tom Hough's CV</a></h1>
+                        <h1><a id="cv_redirect" href="/cv">Tom Hough's CV</a></h1>
                     {% endif %}
                 </td>
             </tr>

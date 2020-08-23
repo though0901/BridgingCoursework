@@ -11,29 +11,29 @@
 
         <h2>Personal Details
             {% if user.is_authenticated %}
-            <a class="btn btn-default" href="{% url 'pd_edit'%}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a id="personal_details_edit" class="btn btn-default" href="{% url 'pd_edit'%}"><span class="glyphicon glyphicon-pencil"></span></a>
             {% endif %}
         </h2>
-        <p>Name: {{ pds.name }}</p>
-        <p>Date of birth: {{ pds.date_of_birth }}</p>
-        <p>Email Address: <a href="mailto: {{ pds.email_address }}">{{ pds.email_address }}</a></p>
+        <p id="name">Name: {{ pds.name }}</p>
+        <p id="date_of_birth">Date of birth: {{ pds.date_of_birth }}</p>
+        <p id="email_address">Email Address: <a href="mailto: {{ pds.email_address }}">{{ pds.email_address }}</a></p>
 
         <h2>Qualifications
             {% if user.is_authenticated %}
-                <a class="btn btn-default" href="{% url 'qual_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
+                <a id="qual_new" class="btn btn-default" href="{% url 'qual_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
             {% endif %}
         </h2>
         {% for q in quals %}
             <h4>{{ q.institution }}
             {% if user.is_authenticated %}
-                <a class="btn btn-default" href="{% url 'qual_edit' pk=q.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-                <a class="btn btn-default" href="{% url 'qual_remove' pk=q.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                <a id="qual_edit{{ forloop.counter }}" class="btn btn-default" href="{% url 'qual_edit' pk=q.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a id="qual_remove{{ forloop.counter }}" class="btn btn-default" href="{% url 'qual_remove' pk=q.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
             {% endif %}
             </h4>
             <p>{{ q.grades|linebreaks }}</p>
         {% endfor %}
 
-        <h2>Experience
+        <h2>Experiences
             {% if user.is_authenticated %}
                 <a class="btn btn-default" href="{% url 'exp_new' %}"><span class="glyphicon glyphicon-plus"></span></a>
             {% endif %}

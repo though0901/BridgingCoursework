@@ -1,5 +1,5 @@
 .page-header {
-    background-color: #39c9bb;
+    background-color: black;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -8,6 +8,10 @@
     color: #ffffff;
     font-size: 36pt;
     text-decoration: none;
+}
+
+#cv_td {
+    padding-left: 40px;
 }
 
 .content {

@@ -1,18 +1,54 @@
 {% load static %}
 <!DOCTYPEhtml> 
-<html> 
+<html>
+    <!-- going to put this here to validate on what to put where -->
+    <script type="text/javascript">
+    function setup() {
+        //if we are in the CV we want to change some thing for formatting issues
+        if (window.location.href.includes('cv')) {
+            document.title = "Tom Hough's CV";
+            {% if user.is_authenticated %}
+                const element = document.getElementById("div_for_blog");
+                element.parentNode.removeChild(element);
+            {% endif %}
+        }
+    }
+    </script>
+    <body onload="setup()">
 	<div>
 		<div class="page-header">
 			{% if user.is_authenticated %}
+                <div id="div_for_blog">
 			    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
 			    <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
-			    <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+                </div>
+			    <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}" style="color: #e0301e">Log out</a>)</small></p>
 			{% else %}
 				<a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
 			{% endif %}
-	    	<h1><a href="/">Tom Hough's Blog</a></h1>
+
+        <table>
+            <tr>
+                <td id="blog_td">
+                    {% if not 'cv' in request.build_absolute_uri %}
+                        <h1><a href="/" style="color: #e0301e">Tom Hough's Blog</a></h1>
+                    {% else %}
+                        <h1><a href="/">Tom Hough's Blog</a></h1>
+                    {% endif %}
+                </td>
+                <td id="cv_td">
+                    {% if 'cv' in request.build_absolute_uri %}
+                        <h1><a href="/cv" style="color: #e0301e">Tom Hough's CV</a></h1>
+                    {% else %}
+                        <h1><a href="/cv">Tom Hough's CV</a></h1>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+
 	    </div>
 	    <title>Tom Hough's Blog</title>
+
 	    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
@@ -26,4 +62,5 @@
 	        </div>
 	    </div>
 	</div>
+    </body>
 </html>

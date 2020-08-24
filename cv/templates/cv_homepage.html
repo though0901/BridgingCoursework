@@ -39,12 +39,14 @@
             {% endif %}
         </h2>
         {% for e in exp %}
-            <h4>{{ e.company }} (Start: {{ e.start_date }}, End: {{ e.end_date }})</h4>
+            <h4>{{ e.company }} (Start: {{ e.start_date }}, End: {{ e.end_date }})
+                {% if user.is_authenticated %}
+                    <a class="btn btn-default" href="{% url 'exp_edit' pk=e.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a class="btn btn-default" href="{% url 'exp_remove' pk=e.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                {% endif %}
+            </h4>
             <p>{{ e.description|linebreaks }}</p>
-            {% if user.is_authenticated %}
-                <a class="btn btn-default" href="{% url 'exp_edit' pk=e.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-                <a class="btn btn-default" href="{% url 'exp_remove' pk=e.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-            {% endif %}
+
         {% endfor %}
 
         <h2>Projects

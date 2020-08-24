@@ -20,7 +20,7 @@ class Experience(models.Model):
     start_date = models.DateField(default=timezone.now)
     end_date = models.DateField(default=timezone.now)
     company = models.CharField(default='', max_length=100)
-    description = models.TextField(default='', max_length=100)
+    description = models.TextField(default='')
 
 
 class Project(models.Model):
